@@ -28,7 +28,7 @@ int spectrum_height = 176; // determines range of dB shown
 /**
  * Misc. settings
  */
-String serial_port = "/dev/tty.usbmodem1411";
+String serial_port = "/dev/tty.usbmodem1411"; // <- Insert the port name that data is sent to
 int baud_rate = 57600;
 boolean enable_32 = true;
 int[] freq_range_maxes = { 50, 69, 94, 129, 178, 241, 331, 453, 620, 850, 1241, 1600, 2200, 3000, 4100, 5600 };
