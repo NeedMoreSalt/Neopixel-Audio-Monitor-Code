@@ -1,11 +1,11 @@
-import ddf.minim.analysis.*;
+import ddf.minim.analysis.*; //essential libraries for FFT processing
 import ddf.minim.*;
 import processing.serial.*;
  
 Serial port;
  
 Minim minim;
-AudioInput in;
+AudioInput in; // keep in mind that the audio channel used to input cannot be changed for the program while it is running, to switch audio sources, restart the program.
 FFT fft;
 float[] peaks;
 
@@ -18,7 +18,7 @@ int[] peak_age;  // tracks how long peak has been stable, before decaying
 // how wide each 'peak' band is, in fft bins
 int binsperband = 10;
 int peaksize; // how many individual peak bands we have (dep. binsperband)
-float gain = 40; // in dB
+float gain = 40; // in dB, can be adjusted to change sensitivity
 float dB_scale = 2.0;  // pixels per dB
 
 int buffer_size = 1024;  // also sets FFT size (frequency resolution)
@@ -111,7 +111,8 @@ void draw() {
     else if (freq_height[j] <= 15 && freq_height[j] > 10)     { freq_array[j] = 3; }
     else if (freq_height[j] <= 10 && freq_height[j] > 5)      { freq_array[j] = 2; }
     else if (freq_height[j] <= 5 && freq_height[j] >= 1)      { freq_array[j] = 1; }
-    else if (freq_height[j] < 1 )                             { freq_array[j] = 1; }
+    else if (freq_height[j] < 1 )                             { freq_array[j] = 1; } // change freq_array[j] = 1 into freq_array[j] = 0 if problems arise, 
+                                                                                     // this was modified to fix a bug with peaking LED's
   }
   
   for (i = 0; i < num_levels; i++) {
